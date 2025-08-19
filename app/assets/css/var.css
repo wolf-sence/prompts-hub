@@ -1,0 +1,25 @@
+:root.dark {
+  --primary-bg: rgba(0, 0, 0, 0.85);
+  --secondary-bg: rgba(0, 0, 0, 0.6);
+  --card-bg: rgba(0, 0, 0, 0.4);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --accent: #3b82f6;
+  --border: rgba(255, 255, 255, 0.1);
+  --hover: rgba(255, 255, 255, 0.05);
+}
+:root.light {
+  --primary-bg: rgba(255, 255, 255, 0.95);
+  --secondary-bg: rgba(255, 255, 255, 0.8);
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --text-primary: #1a1a1a;
+  --text-secondary: rgba(26, 26, 26, 0.7);
+  --border: rgba(0, 0, 0, 0.1);
+  --hover: rgba(0, 0, 0, 0.05);
+}
+:root.blue {
+  --primary-bg: rgba(30, 58, 138, 0.85);
+  --secondary-bg: rgba(30, 58, 138, 0.6);
+  --card-bg: rgba(59, 130, 246, 0.3);
+  --accent: #60a5fa;
+}
