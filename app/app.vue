@@ -1,7 +1,19 @@
 <template>
   <div id="app" :class="themeClass">
     <NuxtRouteAnnouncer />
-    <TheHeader v-model:activeType="activeType" />
+    <TheHeader 
+      v-model:activeType="activeType" 
+      v-model:activeCategory="activeCategory" 
+      @toggleMobileMenu="showMobileMenu = !showMobileMenu"
+    />
+    <MobileSidebar 
+      :show="showMobileMenu" 
+      :activeType="activeType"
+      :activeCategory="activeCategory"
+      @close="showMobileMenu = false"
+      @update:activeType="activeType = $event"
+      @update:activeCategory="activeCategory = $event"
+    />
     <main class="main-container">
       <NuxtPage />
     </main>
@@ -9,15 +21,20 @@
 </template>
 
 <script setup lang="ts">
-import type { PromptType } from '~/types'
+import type { PromptType, PromptCategory } from '~/types'
 
 const colorMode = useColorMode()
 
-// 全局状态管理activeType
+// 全局状态管理activeType和activeCategory
 const activeType = ref<PromptType>('text')
+const activeCategory = ref<PromptCategory | 'all'>('all')
+
+// 移动端侧边菜单状态
+const showMobileMenu = ref(false)
 
 // 提供给子组件使用
 provide('activeType', activeType)
+provide('activeCategory', activeCategory)
 
 const themeClass = computed(() => ({
   'theme-dark': colorMode.value === 'dark',
@@ -27,7 +44,7 @@ const themeClass = computed(() => ({
 </script>
 
 <style>
-@import './assets/css/main.css';
+/* @import './assets/css/main.css'; */
 
 * {
   margin: 0;
@@ -37,10 +54,10 @@ const themeClass = computed(() => ({
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--primary-bg);
+  background-color: var(--bg-primary-85);
   min-height: 100vh;
-  color: var(--text-primary);
-  transition: all 0.3s ease;
+  color: var(--text-primary-100);
+  /* transition: all 0.3s ease; */
 }
 
 .theme-light body {
@@ -58,4 +75,5 @@ body {
 .main-container {
   padding: 0;
 }
+
 </style>

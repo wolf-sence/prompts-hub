@@ -9,15 +9,15 @@
           {{ pageSubtitle }}
         </p>
       </div>
-      
-      <PromptsGrid 
-        :prompts="filteredPrompts" 
+
+      <PromptsGrid
+        :prompts="filteredPrompts"
         :loading="loading"
         @prompt-click="openModal"
       />
     </div>
-    
-    <PromptModal 
+
+    <PromptModal
       v-if="selectedPrompt"
       :show="showModal"
       :prompt="selectedPrompt"
@@ -27,16 +27,16 @@
 </template>
 
 <script setup lang="ts">
-import { Prompt, PromptType } from '~/types'
+import type { TPrompt, PromptType } from '~/types'
 
-const { filteredPrompts, activeType, loading, setActiveType, loadPrompts } = usePrompts()
+const { filteredPrompts, activeType, activeCategory, loading, setActiveType, setActiveCategory, loadPrompts } = usePrompts()
 
 const showModal = ref(false)
-const selectedPrompt = ref<Prompt | null>(null)
+const selectedPrompt = ref<TPrompt | null>(null)
 
 const pageTitles = {
   text: '文本生成 Prompts',
-  image: '图片生成 Prompts', 
+  image: '图片生成 Prompts',
   video: '视频生成 Prompts'
 }
 
@@ -49,7 +49,7 @@ const pageSubtitles = {
 const pageTitle = computed(() => pageTitles[activeType.value])
 const pageSubtitle = computed(() => pageSubtitles[activeType.value])
 
-const openModal = (prompt: Prompt) => {
+const openModal = (prompt: TPrompt) => {
   selectedPrompt.value = prompt
   showModal.value = true
 }
@@ -60,11 +60,6 @@ const closeModal = () => {
     selectedPrompt.value = null
   }, 300)
 }
-
-// 监听类型变化
-watch(activeType, (newType) => {
-  setActiveType(newType)
-})
 
 // 页面加载时获取数据
 onMounted(() => {
@@ -100,7 +95,7 @@ useSeoMeta({
 .page-title {
   font-size: 2.5rem;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--accent) 0%, #60a5fa 100%);
+  background: linear-gradient(135deg, var(--border-blue-primary) 0%, #60a5fa 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -110,7 +105,7 @@ useSeoMeta({
 
 .page-subtitle {
   font-size: 1.125rem;
-  color: var(--text-secondary);
+  color: var(--text-primary-70);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -119,16 +114,17 @@ useSeoMeta({
 @media (max-width: 768px) {
   .page-content {
     padding: 1rem;
+    padding-top: 5rem;
   }
-  
+
   .page-title {
     font-size: 2rem;
   }
-  
+
   .page-subtitle {
     font-size: 1rem;
   }
-  
+
   .page-header {
     margin-bottom: 2rem;
   }
