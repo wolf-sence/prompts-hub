@@ -14,7 +14,7 @@ export const useViewTransition = () => {
       transition.ready.then(() => {
         // 获取鼠标的坐标
         const { clientX, clientY } = event;
- 
+
         // 计算最大半径
         const radius = Math.hypot(
           Math.max(clientX, innerWidth - clientX),
@@ -51,4 +51,4 @@ export const useViewTransition = () => {
   return {
     startCircleTransition
   }
-} 
+}

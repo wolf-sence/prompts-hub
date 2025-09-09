@@ -1,5 +1,7 @@
 /* 导入变量文件 */
 @import './var.css';
+@import './global.css';
+@import './fluid.css';
 
 /* 全局样式 */
 .fade-enter-active,
@@ -38,7 +40,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--text-primary-70);
 }
 
 /* 响应式工具类 */

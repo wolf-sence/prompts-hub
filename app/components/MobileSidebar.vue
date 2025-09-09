@@ -23,20 +23,6 @@
         </div>
 
         <div class="sidebar-content">
-          <div class="menu-section">
-            <h3 class="section-title">内容类型</h3>
-            <div class="nav-tabs">
-              <button
-                v-for="type in promptTypes"
-                :key="type.value"
-                :class="['nav-tab', { active: activeType === type.value }]"
-                @click="setActiveType(type.value)"
-              >
-                <AppIcon :name="type.icon" size="lg" />
-                {{ type.label }}
-              </button>
-            </div>
-          </div>
 
           <div class="menu-section" v-if="categories.length > 0">
             <h3 class="section-title">分类筛选</h3>
@@ -77,13 +63,11 @@ import type { PromptType, PromptCategory } from '~/types'
 
 interface Props {
   show: boolean
-  activeType: PromptType
   activeCategory: PromptCategory | 'all'
 }
 
 interface Emits {
   (e: 'close'): void
-  (e: 'update:activeType', value: PromptType): void
   (e: 'update:activeCategory', value: PromptCategory | 'all'): void
 }
 
@@ -105,29 +89,12 @@ const themes = [
 ]
 
 const categories = computed(() => {
-  if (props.activeType === 'text') {
-    return [
-      { value: 'all' as const, label: '全部' },
-      { value: 'funny' as const, label: '趣味' },
-      { value: 'efficiency' as const, label: '效率' }
-    ]
-  } else if (props.activeType === 'image') {
-    return [
-      { value: 'all' as const, label: '全部' },
-      { value: 'image' as const, label: '图片' }
-    ]
-  }
-  return []
+  return [
+    { value: 'all' as const, label: '全部' },
+    { value: 'funny' as const, label: '趣味' },
+    { value: 'efficiency' as const, label: '效率' }
+  ]
 })
-
-const setActiveType = (type: PromptType) => {
-  emit('update:activeType', type)
-  // 切换类型时重置分类为全部
-  emit('update:activeCategory', 'all')
-  // 选择后关闭菜单
-  emit('close')
-}
-
 const setActiveCategory = (category: PromptCategory | 'all') => {
   emit('update:activeCategory', category)
   // 选择后关闭菜单

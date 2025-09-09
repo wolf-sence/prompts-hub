@@ -1,25 +1,35 @@
 :root.dark {
-  --primary-bg: rgba(0, 0, 0, 0.85);
-  --secondary-bg: rgba(0, 0, 0, 0.6);
-  --card-bg: rgba(0, 0, 0, 0.4);
+  --bg-primary-85: rgba(0, 0, 0, 0.85);
+  --bg-primary-60: rgba(0, 0, 0, 0.6);
+  --bg-primary-40: rgba(0, 0, 0, 0.4);
+  --bg-secondart-100: rgba(32, 32, 32, 1);
+  --bg-secondary-80: rgba(20, 20, 20, 0.8);
+  --text-primary-100: #ffffff;
+  --text-primary-70: rgba(255, 255, 255, 0.7);
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
   --accent: #3b82f6;
   --border: rgba(255, 255, 255, 0.1);
+  --border-primary-10: rgba(255, 255, 255, 0.1);
+  --border-blue: #3b82f6;
+  --border-blue-primary: #3b82f6;
   --hover: rgba(255, 255, 255, 0.05);
+  --hover-primary-5: rgba(255, 255, 255, 0.08);
 }
+
 :root.light {
-  --primary-bg: rgba(255, 255, 255, 0.95);
-  --secondary-bg: rgba(255, 255, 255, 0.8);
-  --card-bg: rgba(255, 255, 255, 0.6);
+  --bg-primary-85: rgba(255, 255, 255, 0.95);
+  --bg-primary-60: rgba(245, 245, 245, 0.9);
+  --bg-primary-40: rgba(255, 255, 255, 0.6);
+  --bg-secondart-100: rgba(255, 255, 255, 1);
+  --bg-secondary-80: rgba(250, 250, 250, 0.9);
+  --text-primary-100: #1a1a1a;
+  --text-primary-70: rgba(26, 26, 26, 0.7);
   --text-primary: #1a1a1a;
-  --text-secondary: rgba(26, 26, 26, 0.7);
+  --accent: #3b82f6;
   --border: rgba(0, 0, 0, 0.1);
+  --border-primary-10: rgba(0, 0, 0, 0.1);
+  --border-blue: #3b82f6;
+  --border-blue-primary: #3b82f6;
   --hover: rgba(0, 0, 0, 0.05);
-}
-:root.blue {
-  --primary-bg: rgba(30, 58, 138, 0.85);
-  --secondary-bg: rgba(30, 58, 138, 0.6);
-  --card-bg: rgba(59, 130, 246, 0.3);
-  --accent: #60a5fa;
+  --hover-primary-5: rgba(0, 0, 0, 0.08);
 }

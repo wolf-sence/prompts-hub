@@ -101,21 +101,6 @@ const emit = defineEmits<Emits>()
 
 const isCopied = ref(false)
 
-const typeIcons = {
-  text: 'heroicons:document-text',
-  image: 'heroicons:photo',
-  video: 'heroicons:film'
-}
-
-const typeLabels = {
-  text: '文本生成',
-  image: '图片生成',
-  video: '视频生成'
-}
-
-const typeIcon = computed(() => typeIcons[props.prompt.type])
-const typeLabel = computed(() => typeLabels[props.prompt.type])
-
 const handleBackdropClick = () => {
   emit('close')
 }
@@ -144,12 +129,13 @@ const getReferIcon = (iconName: string) => {
 
 // 防止滚动穿透
 watch(() => props.show, (show) => {
+  console.log('---- show change')
   if (show) {
     document.body.style.overflow = 'hidden'
   } else {
     document.body.style.overflow = ''
   }
-})
+}, { immediate: true })
 
 onUnmounted(() => {
   document.body.style.overflow = ''
@@ -207,9 +193,9 @@ onUnmounted(() => {
 }
 
 .modal-close:hover {
-  background: var(--hover-primary-5);
+  background: var(--hover);
   color: var(--text-primary-100);
-  border-color: var(--border-blue-primary);
+  border-color: var(--border-blue);
 }
 
 .modal-content {
@@ -267,7 +253,7 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--border-blue-primary);
+  background: var(--border-blue);
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 20px;
@@ -290,7 +276,7 @@ onUnmounted(() => {
 
 .prompt-details {
   padding: 2rem;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .detail-section {
@@ -351,15 +337,15 @@ onUnmounted(() => {
 }
 
 .copy-btn:hover {
-  background: var(--hover-primary-5);
+  background: var(--hover);
   color: var(--text-primary-100);
-  border-color: var(--border-blue-primary);
+  border-color: var(--border-blue);
 }
 
 .copy-btn.copied {
-  background: var(--border-blue-primary);
+  background: var(--border-blue);
   color: white;
-  border-color: var(--border-blue-primary);
+  border-color: var(--border-blue);
 }
 
 .tags-list {
@@ -400,7 +386,7 @@ onUnmounted(() => {
 }
 
 .model-tag {
-  background: var(--border-blue-primary);
+  background: var(--border-blue);
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
@@ -412,7 +398,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  color: var(--border-blue-primary);
+  color: var(--border-blue);
   text-decoration: none;
   font-size: 0.9375rem;
   transition: color 0.2s ease;
@@ -471,7 +457,7 @@ onUnmounted(() => {
 
   .prompt-details {
     padding: 1.5rem;
-    height: auto;
+    /* height: auto; */
   }
 
   .prompt-meta {

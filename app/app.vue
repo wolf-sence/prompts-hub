@@ -1,18 +1,10 @@
 <template>
   <div id="app" :class="themeClass">
     <NuxtRouteAnnouncer />
-    <TheHeader 
-      v-model:activeType="activeType" 
-      v-model:activeCategory="activeCategory" 
-      @toggleMobileMenu="showMobileMenu = !showMobileMenu"
-    />
+    <TheHeader @toggleMobileMenu="showMobileMenu = !showMobileMenu" />
     <MobileSidebar 
       :show="showMobileMenu" 
-      :activeType="activeType"
-      :activeCategory="activeCategory"
       @close="showMobileMenu = false"
-      @update:activeType="activeType = $event"
-      @update:activeCategory="activeCategory = $event"
     />
     <main class="main-container">
       <NuxtPage />
@@ -21,20 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import type { PromptType, PromptCategory } from '~/types'
-
 const colorMode = useColorMode()
-
-// 全局状态管理activeType和activeCategory
-const activeType = ref<PromptType>('text')
-const activeCategory = ref<PromptCategory | 'all'>('all')
 
 // 移动端侧边菜单状态
 const showMobileMenu = ref(false)
-
-// 提供给子组件使用
-provide('activeType', activeType)
-provide('activeCategory', activeCategory)
 
 const themeClass = computed(() => ({
   'theme-dark': colorMode.value === 'dark',

@@ -7,15 +7,14 @@ export const usePrompts = () => {
   const prompts = ref<TPrompt[]>([])
   const activeType = ref<PromptType>('text')
   const activeCategory = ref<PromptCategory | 'all'>('all')
-  const loading = ref(false)
 
   const filteredPrompts = computed(() => {
     let filtered = prompts.value.filter(prompt => prompt.type === activeType.value)
-    
+
     if (activeCategory.value !== 'all') {
       filtered = filtered.filter(prompt => prompt.category === activeCategory.value)
     }
-    
+
     return filtered
   })
 
@@ -28,18 +27,16 @@ export const usePrompts = () => {
   }
 
   const loadPrompts = async () => {
-    loading.value = true
-    await new Promise(resolve => setTimeout(resolve, 300))
-    
+    // await new Promise(resolve => setTimeout(resolve, 300))
+
     // 组合所有 prompts 数据并添加 category
     const allPrompts: TPrompt[] = [
       ...FunnyPrompts.map(p => ({ ...p, category: 'funny' as const })),
       ...EfficiencyPrompts.map(p => ({ ...p, category: 'efficiency' as const })),
       ...ImagePrompts.map(p => ({ ...p, category: 'image' as const }))
     ]
-    
+
     prompts.value = allPrompts
-    loading.value = false
   }
 
   return {
@@ -47,7 +44,6 @@ export const usePrompts = () => {
     filteredPrompts,
     activeType,
     activeCategory,
-    loading,
     setActiveType,
     setActiveCategory,
     loadPrompts

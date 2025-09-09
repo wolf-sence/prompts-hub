@@ -2,17 +2,10 @@
   <div class="home-page">
     <div class="page-content">
       <div class="page-header">
-        <h1 class="page-title">
-          {{ pageTitle }}
-        </h1>
-        <p class="page-subtitle">
-          {{ pageSubtitle }}
-        </p>
       </div>
 
       <PromptsGrid
         :prompts="filteredPrompts"
-        :loading="loading"
         @prompt-click="openModal"
       />
     </div>
@@ -29,25 +22,10 @@
 <script setup lang="ts">
 import type { TPrompt, PromptType } from '~/types'
 
-const { filteredPrompts, activeType, activeCategory, loading, setActiveType, setActiveCategory, loadPrompts } = usePrompts()
+const { filteredPrompts, loadPrompts } = usePrompts()
 
 const showModal = ref(false)
 const selectedPrompt = ref<TPrompt | null>(null)
-
-const pageTitles = {
-  text: '文本生成 Prompts',
-  image: '图片生成 Prompts',
-  video: '视频生成 Prompts'
-}
-
-const pageSubtitles = {
-  text: '优质的文本生成提示词，帮助您创建更好的内容',
-  image: '精心设计的图片生成提示词，激发您的创意灵感',
-  video: '专业的视频生成提示词，打造引人入胜的视觉内容'
-}
-
-const pageTitle = computed(() => pageTitles[activeType.value])
-const pageSubtitle = computed(() => pageSubtitles[activeType.value])
 
 const openModal = (prompt: TPrompt) => {
   selectedPrompt.value = prompt

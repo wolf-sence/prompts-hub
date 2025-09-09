@@ -4,6 +4,7 @@ export const ImagePrompts: TPrompt[] = [
   {
     type: "image",
     models: ['gpt4o'],
+    category: "funny",
     refer: {
       name: "unknow",
       icon: "twitter",
@@ -33,6 +34,25 @@ export const ImagePrompts: TPrompt[] = [
 背景：柔和的暖灰色或粉彩奶油色，保持一致性尺寸：1:1 正方形比例
 重要提示
 确保整套图标的光照和阴影柔和度保持一致。阴影应该出现在图标的下方和后方，带有柔和的模糊效果一完全匹配 Spotify、相机和天气图标样本。避免生硬或过于锐利的阴影。通过阴影和深度效果强调图标与底座之间的清晰分离。
+      `,
+    },
+  },
+  {
+    type: "image",
+    models: ['banana'],
+    category: "funny",
+    refer: {
+      name: "unknow",
+      icon: "twitter",
+    },
+    prompt: {
+      title: "nano-banana生成模型图",
+      desc: "",
+      image: "https://imgcdn.somebodyelse.cn/prompts-hub/6de36864-347f-448a-ab15-b189ecdfb75b.png",
+      content: `
+Use the nano-banana model to create a 1/7 scale commercialized figure of thecharacter in the illustration, in a realistic styie and environment.Place the figure on a computer desk, using a circular transparent acrylic base
+
+without any text.On the computer screen, display the ZBrush modeling process of the figure.Next to the computer screen, place a Kotobukiya-style toy packaging box printedwith the original artwork.
       `,
     },
   },
